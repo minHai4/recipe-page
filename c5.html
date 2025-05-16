@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        header {
+            text-align: center;
+            background-color: #2fcbff;
+            color: white;
+            padding: 20px;
+        }
+        header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-style: italic;
+            font-size: 1.2em;
+        }
+        .list {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            
+        }
+        .list span {
+            display: inline-block;
+            border: 2px solid #2fcbff;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        .list a {
+            text-decoration: none;
+            color: #2fcbff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .list span:hover {
+            background-color: #2fcbff;
+        }
+        .list span:hover a {
+            color: white;
+        }
+        .advert {
+            width: 80%;
+            min-height: 200px;
+            background-color: #00e56b;
+            color: white;
+            border: 2px solid #00b253;
+            text-align: center;
+            margin: 20px auto 0 auto;
+            padding: 20px;
+        }
+        .advert:hover {
+            background-color: #2fcbff;
+            border: 4px solid #2f63ff;
+            font-style: italic;
+            transition: background-color 0.3s, border 0.2s;
+        }
+        .course-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .item {
+            background-color: #2fcbff;
+            border: 2px solid #2f63ff;
+            border-radius: 8px;
+            color: #fff;
+            padding: 20px;
+            width: 250px;
+            box-sizing: border-box;
+            transition: background 0.3s, border 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .item:hover {
+            background-color: #2f63ff;
+            border: 2px solid #00e56b;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://img.freepik.com/free-vector/flat-design-english-school-logo-design_23-2149483334.jpg?semt=ais_hybrid&w=740" alt ="logo" >
+        <h1>Welcome to English Learning Exercise</h1>
+        <p>Empowering You to Speak English with Confidence!</p>
+    </header>
+    <nav class ="list">
+        <span>
+            <a href="c1.html">Exercise</a>
+        </span>
+        <span>
+            <a href="c2.html">Advertisement</a>
+        </span>
+        <span>
+            <a href="c3.html">Course</a>
+        </span>
+        <span>
+            <a href="c4.html">Form</a>
+        </span>
+    </nav>
+    <div class="advert">
+        <h2>This is an Advertisement</h2>
+        <p>Learn English with us and unlock a world of opportunities! Our comprehensive courses are designed for all levels, from beginners to advanced learners. With experienced teachers, interactive lessons, and real-life practice, you will quickly build your confidence and fluency. Join our vibrant community, access exclusive resources, and enjoy flexible schedules that fit your lifestyle. Whether you want to improve your career prospects, travel the world, or connect with new friends, mastering English opens the door to endless possibilities. Enroll today and start your journey to success!</p>
+    </div>
+    <div class="courses">
+        <h1 style="text-align: center;">English Learning Courses</h1>
+        <div id="course-list" class="course-list"></div>
+    </div>
+    <script>
+        const jsonData = `[
+            {
+                "tenkhoahoc": "Beginner English",
+                "mota": "Basic English for beginners.",
+                "hocphi": "2.500.000 VNĐ",
+                "thoigiankhaigiang": "01/06/2025"
+            },
+            {
+                "tenkhoahoc": "Academic English",
+                "mota": "English for academic purposes.",
+                "hocphi": "3.800.000 VNĐ",
+                "thoigiankhaigiang": "10/06/2025"
+            },
+            {
+                "tenkhoahoc": "Business English",
+                "mota": "English for business communication.",
+                "hocphi": "3.000.000 VNĐ",
+                "thoigiankhaigiang": "15/06/2025"
+            },
+            {
+                "tenkhoahoc": "Pronunciation Improvement",
+                "mota": "Improve your pronunciation and intonation.",
+                "hocphi": "2.000.000 VNĐ",
+                "thoigiankhaigiang": "20/06/2025"
+            }
+        ]`;
+        const courseArr = JSON.parse(jsonData);
+
+        let html = "";
+        for (let i = 0; i < courseArr.length; i++) {
+            html += `
+                <div class="item">
+                    <h3 style="text-align:center">${courseArr[i].tenkhoahoc}</h3>
+                    <p><strong>Mô tả:</strong> ${courseArr[i].mota}</p>
+                    <p><strong>Học phí:</strong> ${courseArr[i].hocphi}</p>
+                    <p><strong>Thời gian khai giảng:</strong> ${courseArr[i].thoigiankhaigiang}</p>
+                </div>
+            `;
+        }
+        document.getElementById("course-list").innerHTML = html;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        body {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1.2rem;
+        }
+        h1 {
+            text-align: center;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+        }
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2fcbff ;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.5s;
+
+        }
+        form button:hover {
+            background: #2f63ff;
+            font-weight: bold;
+        }
+        .error {
+            color: #d8000c;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 1024px) {
+            body {
+                padding: 10px;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 414px) {
+            body {
+                max-width: 100%;
+                font-size: 0.9rem;
+                color: #d8000c;
+            }
+            form input, form select {
+            width: 80%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Đăng ký khóa học</h1>
+    <form id="FormDki" novalidate>
+        <div class="error" id="errorMessage"></div>
+        <label for="fullname">Họ và tên:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <label for="phonenumber">Số điện thoại:</label>
+        <input type="tel" id="phonenumber" name="phone" placeholder="0912345678" required pattern ="0[0-9]{9,10}">
+        <label for="course">Khóa học muốn đăng ký:</label>
+        <select name="course" id="course" required>
+            <option value="" disabled selected>--Chọn khóa học--</option>
+            <option value="Beginner English">Beginner English</option>
+            <option value="Academic English">Academic English</option>
+            <option value="Business English">Business English</option>
+            <option value="Pronunciation Improvement">Pronunciation Improvement</option>
+        </select>
+        <label for="studytime">Thời gian ưu tiên học:</label>
+        <select name="studytime" id="time" required>
+            <option value="" disabled selected>--Chọn thời gian--</option>
+            <option value="morning">Sáng</option>
+            <option value="afternoon">Chiều</option>
+            <option value="evening">Tối</option>
+        </select>
+        <button type="submit">Đăng ký</button>
+    </form>
+    <script>
+        document.getElementById('FormDki').addEventListener('submit',function(e) {
+            e.preventDefault();
+            let errorMessage = '';
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phonenumber = document.getElementById('phonenumber').value.trim();
+            const course = document.getElementById('course').value;
+            const studytime = document.getElementById('time').value;
+            // Kiểm tra họ tên
+            if (fullname.length < 2) {
+                errorMessage = "Vui lòng nhập họ và tên hợp lệ.";
+            }
+            // Kiểm tra email
+            else if (!/^[\w\.-]+@[\w\.-]+\.\w{2,}$/.test(email)) {
+                errorMessage = "Email không hợp lệ.";
+            }
+            // Kiểm tra số điện thoại
+            else if (!/0[0-9]{9,10}/.test(phonenumber)) {
+                errorMessage = "Số điện thoại không hợp lệ.";
+            }
+            // Kiểm tra khóa học
+            else if (course === "") {
+                errorMessage = "Vui lòng chọn khóa học.";
+            }
+            // Kiểm tra thời gian học
+            else if (studytime === "") {
+                errorMessage = "Vui lòng chọn thời gian học.";
+            }
+            // Nếu có lỗi, hiển thị thông báo
+            document.getElementById('errorMessage').textContent = errorMessage;
+            // Nếu không có lỗi, hiển thị thông báo thành công
+            if (!errorMessage) {
+                alert("Đăng ký thành công!");
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>

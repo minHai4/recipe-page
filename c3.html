@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    <h1 style="text-align: center;">English Learning Courses</h1>
+    <div id="course"></div>
+</body>
+<script>
+    const jsonData = `[
+        {
+            "tenkhoahoc": "Beginner English",
+            "mota": "Basic English for beginners.",
+            "hocphi": "2.500.000 VNĐ",
+            "thoigiankhaigiang": "01/06/2025"
+        },
+        {
+            "tenkhoahoc": "Academic English",
+            "mota": "English for academic purposes.",
+            "hocphi": "3.800.000 VNĐ",
+            "thoigiankhaigiang": "10/06/2025"
+        },
+        {
+            "tenkhoahoc": "Business English",
+            "mota": "English for business communication.",
+            "hocphi": "3.000.000 VNĐ",
+            "thoigiankhaigiang": "15/06/2025"
+        },
+        {
+            "tenkhoahoc": "Pronunciation Improvement",
+            "mota": "Improve your pronunciation and intonation.",
+            "hocphi": "2.000.000 VNĐ",
+            "thoigiankhaigiang": "20/06/2025"
+        }
+    ]`;
+    const courseArr = JSON.parse(jsonData);
+
+    let i = 0;
+    let html = "";
+
+    while (i < courseArr.length) {
+        html += `
+            <div class="course" style="background-color: #2fcbff; border: 2px solid #2f63ff; margin: 10px; color: #fff;">
+                <h2 style="color: #fff;text-align: center">Course ${i + 1}</h2>
+                <h3 style="text-align: center">${courseArr[i].tenkhoahoc}</h3>
+                <p><strong>Mô tả:</strong> ${courseArr[i].mota}</p>
+                <p><strong>Học phí:</strong> ${courseArr[i].hocphi}</p>
+                <p><strong>Thời gian khai giảng:</strong> ${courseArr[i].thoigiankhaigiang}</p>
+            </div>
+            `;
+        i++;
+    }
+    document.getElementById("course").innerHTML = html;
+</script>
+</html>
